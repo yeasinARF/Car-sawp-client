@@ -1,0 +1,9 @@
+/* google font  */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito&display=swap');
+.card img{
+    height:90px;
+    width:150px;
+}
+.description .headingTitle{
+    font-family: 'Fredoka One', cursive;
+}

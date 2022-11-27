@@ -1,0 +1,12 @@
+/* google font  */
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+.cardProduct{
+    font-family: 'Nunito', sans-serif;
+    
+}
+.cardProduct .locImg{
+    width:20px;
+    height:20px;
+    
+}

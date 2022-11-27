@@ -1,0 +1,35 @@
+.navBar{
+    background-color:rgb(222, 222, 222);
+}
+.Navimg{
+    width:80px;
+    height:70px;
+}
+.showName {
+    display: block;
+}
+
+.hideName {
+    display: none;
+}
+
+.visible {
+    position: absolute;
+    background-color: gray;
+    right: 12%;
+    padding: 5px;
+    margin-top: 10px;
+    z-index: 1;
+}
+
+.privateNav {
+    padding-top: 9px;
+}
+
+@media screen and (max-width:992px) {
+    .privateNav {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
