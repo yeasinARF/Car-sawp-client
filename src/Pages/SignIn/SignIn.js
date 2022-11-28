@@ -49,6 +49,7 @@ const SignIn = () => {
         .catch(error => {
             const errorMsg = error.message;
             setError(errorMsg)
+            setLoader(false);
         })
     }
     const handleLogInWithGoogle = () => {

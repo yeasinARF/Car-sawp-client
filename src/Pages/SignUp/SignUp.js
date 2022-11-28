@@ -13,7 +13,13 @@ const SignUp = () => {
     const { signUp } = useContext(AuthContext);
     const navigate = useNavigate();
     const [error, setError] = useState('');
-
+    const [role, setRole] = useState('buyer');
+    const handleChange = (e) => {
+        const form = e.target;
+        const value = form.value;
+        setRole(value);
+        // console.log(role);
+    }
     const handleSignUp = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -31,13 +37,31 @@ const SignUp = () => {
                 updateProfile(auth.currentUser, {
                     displayName: displayName, photoURL: photoURL
                 }).then(() => {
+                    
                     console.log('profile updated');
                 }).catch((error) => {
                     console.log(error);
                 });
                 navigate('/login')
                 toast("Registered Successfully");
-                console.log(user);
+                
+                const currentUser = {
+                    name:displayName,
+                    email: email,
+                    img:photoURL,
+                    rolePermission:role,
+                }
+                fetch("http://localhost:5000/user", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                    body: JSON.stringify(currentUser),
+                })
+                .then((res) => res.json())
+                .then((data) =>console.log(data))
+                .catch(err => console.error(err));
+                
             })
             .catch(error => {
                 const errorMsg = error.message;
@@ -67,6 +91,30 @@ const SignUp = () => {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" placeholder="Password" name="password" required />
                         </Form.Group>
+                        {['radio'].map((type) => (
+                            <div key={`inline-${type}`} className="mb-3">
+                                <Form.Check
+                                    inline
+                                    label="Buyer"
+                                    name="option"
+                                    value="buyer"
+                                    onChange={handleChange}
+                                    type={type}
+                                    id={`inline-${type}-1`}
+                                    checked={role === 'buyer'}
+                                />
+                                <Form.Check
+                                    inline
+                                    label="Seller"
+                                    name="option"
+                                    value="seller"
+                                    onChange={handleChange}
+                                    type={type}
+                                    id={`inline-${type}-2`}
+                                    checked={role === 'seller'}
+                                />
+                            </div>
+                        ))}
                         <Button variant="primary" type="submit">
                             Register
                         </Button>

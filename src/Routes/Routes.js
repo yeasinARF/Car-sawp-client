@@ -1,4 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
+import AddProduct from "../Dashboard/AddProduct/AddProduct";
+import AllBuyers from "../Dashboard/AllBuyers/AllBuyers";
+import AllSellers from "../Dashboard/AllSellers/AllSellers";
+import Layout from "../Dashboard/Layout/Layout";
+import MyOrders from "../Dashboard/MyOrders/MyOrders";
+import MyProducts from "../Dashboard/MyProducts/MyProducts";
+import ReportedItems from "../Dashboard/ReportedItems/ReportedItems";
 import Main from "../layout/Main";
 import AllCars from "../Pages/AllCars/AllCars";
 import Blog from "../Pages/Blog/Blog";
@@ -55,6 +62,46 @@ const router = createBrowserRouter([
             {
                 path:'/register',
                 element:<SignUp></SignUp>
+            }
+            ,
+            {
+                path:'/dashboard',
+                loader:async()=>{
+                    return fetch('http://localhost:5000/user')
+                }
+                ,
+                element:<Layout></Layout>,
+                children:[
+                    {
+                        path:'addProduct',
+                        element:<AddProduct></AddProduct>
+                    }
+                    ,
+                    {
+                        path:'myProducts',
+                        element:<MyProducts></MyProducts>
+                    }
+                    ,{
+                        path:'myOrders',
+                        element:<MyOrders></MyOrders>
+                    }
+                    ,
+                    {
+                        path:'allSellers',
+                        element:<AllSellers></AllSellers>
+                    }
+                    ,
+                    {
+                        path:'allBuyers',
+                        element:<AllBuyers></AllBuyers>
+                    }
+                    ,
+                    {
+                        path:'reportedItems',
+                        element:<ReportedItems></ReportedItems>
+                    }
+                ]
+
             }
         ]
     }

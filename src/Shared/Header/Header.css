@@ -16,7 +16,7 @@
 .visible {
     position: absolute;
     background-color: gray;
-    right: 12%;
+    right: 20%;
     padding: 5px;
     margin-top: 10px;
     z-index: 1;
