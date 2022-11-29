@@ -1,10 +1,11 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 
 const AllBuyers = () => {
     return (
-        <div>
-            this is all buyer
-        </div>
+        <Container>
+
+        </Container>
     );
 };
 
