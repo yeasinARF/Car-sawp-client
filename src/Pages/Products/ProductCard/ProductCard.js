@@ -4,8 +4,8 @@ import loc from '../../../Images/location.png';
 import seller from '../../../Images/user.png';
 import './ProductCard.css'
 
-const ProductCard = ({data}) => {
-    const {name,img,location,resale_price,original_price,years_of_use,seller_name}=data;
+const ProductCard = ({ data }) => {
+    const { name, img, location, resale_price, original_price, years_of_use, seller_name } = data;
     return (
         <Col md={6} lg={4}>
             <Card className='p-2 card my-5 cardProduct'>
@@ -22,7 +22,10 @@ const ProductCard = ({data}) => {
                             <p className=''>Posted On:<span></span></p>
                         </div>
                     </h6>
-                    <Button variant="primary">Book Now</Button>
+                    <div className='d-flex justify-content-between'>
+                        <Button variant="primary">Book Now</Button>
+                        <Button variant="primary">Report</Button>
+                    </div>
                 </Card.Body>
             </Card>
         </Col>
