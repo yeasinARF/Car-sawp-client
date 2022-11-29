@@ -3,9 +3,36 @@ import { Button, Card, Col } from 'react-bootstrap';
 import loc from '../../../Images/location.png';
 import seller from '../../../Images/user.png';
 import './ProductCard.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductCard = ({ data }) => {
-    const { name, img, location, resale_price, original_price, years_of_use, seller_name } = data;
+    const { name, img, location, resale_price, original_price, years_of_use, seller_name,_id } = data;
+    const handleReportToAdmin=(_id)=>{
+        const reportedItem = {
+            name:name,
+            img:img,
+            item_id:_id
+        }
+        fetch(`http://localhost:5000/reportedItem/${_id}`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(reportedItem),
+        })
+        .then((res) => res.json())
+        .then((data) =>{
+            if(data.acknowledged)
+            {
+                toast("Successfully Reported this item");
+            }
+            else{
+                toast("Something Went Wrong!");
+            }
+        })
+        .catch(err => console.error(err));
+    }
     return (
         <Col md={6} lg={4}>
             <Card className='p-2 card my-5 cardProduct'>
@@ -24,10 +51,11 @@ const ProductCard = ({ data }) => {
                     </h6>
                     <div className='d-flex justify-content-between'>
                         <Button variant="primary">Book Now</Button>
-                        <Button variant="primary">Report</Button>
+                        <Button variant="primary" onClick={()=>handleReportToAdmin(_id)}>Report to Admin</Button>
                     </div>
                 </Card.Body>
             </Card>
+            <ToastContainer />
         </Col>
     );
 };
