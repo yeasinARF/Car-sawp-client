@@ -93,6 +93,10 @@ const router = createBrowserRouter([
                     ,
                     {
                         path:'allBuyers',
+                        loader:async()=>{
+                            return fetch('http://localhost:5000/users/buyer')
+                        }
+                        ,
                         element:<AllBuyers></AllBuyers>
                     }
                     ,
