@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Card, Col } from 'react-bootstrap';
+import { FaTrashAlt } from 'react-icons/fa';
 
 const AllBuyersCard = ({data,handleDelete})=> {
     const {name,img,email,_id}=data;
@@ -10,7 +11,7 @@ const AllBuyersCard = ({data,handleDelete})=> {
                 <Card.Body>
                     <Card.Title className='fw-bold'>{name}</Card.Title>
                     <p>Email: {email}</p>
-                    <Button onClick={() => handleDelete(_id)} className='px-3 py-2 fw-bold text-white' variant='primary'>Delete</Button>
+                    <span onClick={()=>handleDelete(_id)} className='px-2 py-2 fw-bold fs-3' ><FaTrashAlt style={{color: 'rgb(107, 67, 251)',cursor:'pointer'}}></FaTrashAlt></span>
                 </Card.Body>
             </Card>
         </Col>
