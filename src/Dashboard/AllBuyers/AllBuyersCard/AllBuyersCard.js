@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, Card, Col } from 'react-bootstrap';
 
-const AllBuyersCard = () => {
+const AllBuyersCard = ({data,handleDelete})=> {
+    const {name,img,email,_id}=data;
     return (
         <Col md={6} lg={4}>
             <Card className='p-2 card mb-3 cardProduct'>
