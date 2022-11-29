@@ -66,10 +66,6 @@ const router = createBrowserRouter([
             ,
             {
                 path:'/dashboard',
-                loader:async()=>{
-                    return fetch('http://localhost:5000/user')
-                }
-                ,
                 element:<Layout></Layout>,
                 children:[
                     {
@@ -88,6 +84,10 @@ const router = createBrowserRouter([
                     ,
                     {
                         path:'allSellers',
+                        loader:async()=>{
+                            return fetch('http://localhost:5000/users/seller')
+                        }
+                        ,
                         element:<AllSellers></AllSellers>
                     }
                     ,

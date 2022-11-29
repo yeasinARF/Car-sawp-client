@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext} from 'react';
 import { Container, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import useRole from '../../useRole';
 import { AuthContext } from '../../Utilities/Context/UserContext';
 
@@ -11,26 +11,26 @@ const SideBar = () => {
     // console.log(currentUser);
     return (
         <Container>
-            <Nav className="flex-column">
+            <Nav className="flex-md-column pb-5">
                 {
                     (currentUser === 'seller' || currentUser === 'admin') ? <>
                         {
                             currentUser === 'seller' && <>
-                                <Link to='addProduct'>Add A Product</Link>
-                                <Link to='myProducts'>My Products</Link>
+                                <NavLink style={({ isActive }) => isActive ? { color: 'rgb(107, 67, 251)', textDecorationColor: 'rgb(107, 67, 251) ', textDecorationThickness: '3px', textUnderlineOffset: '8px' } : { color: 'black', textDecoration: 'none' }}  className='fw-bold pb-3 pe-3'  to='addProduct'>Add A Product</NavLink>
+                                <NavLink style={({ isActive }) => isActive ? { color: 'rgb(107, 67, 251)', textDecorationColor: 'rgb(107, 67, 251) ', textDecorationThickness: '3px', textUnderlineOffset: '8px' } : { color: 'black', textDecoration: 'none' }}  className='fw-bold pb-3 pe-3' to='myProducts'>My Products</NavLink>
                             </>
                         }
                         {
                             currentUser === 'admin'&&<>
-                                <Link to='allSellers'>All Sellers</Link>
-                                <Link to='allBuyers'>All Buyers</Link>
-                                <Link to='reportedItems'>Reported Items</Link>
+                                <NavLink style={({ isActive }) => isActive ? { color: 'rgb(107, 67, 251)', textDecorationColor: 'rgb(107, 67, 251) ', textDecorationThickness: '3px', textUnderlineOffset: '8px' } : { color: 'black', textDecoration: 'none' }}  className='fw-bold pb-3 pe-3' to='allSellers'>All Sellers</NavLink>
+                                <NavLink style={({ isActive }) => isActive ? { color: 'rgb(107, 67, 251)', textDecorationColor: 'rgb(107, 67, 251) ', textDecorationThickness: '3px', textUnderlineOffset: '8px' } : { color: 'black', textDecoration: 'none' }}  className='fw-bold pb-3 pe-3' to='allBuyers'>All Buyers</NavLink>
+                                <NavLink style={({ isActive }) => isActive ? { color: 'rgb(107, 67, 251)', textDecorationColor: 'rgb(107, 67, 251) ', textDecorationThickness: '3px', textUnderlineOffset: '8px' } : { color: 'black', textDecoration: 'none' }}  className='fw-bold pb-3 pe-3'to='reportedItems'>Reported Items</NavLink>
                             </>
                         }
                     </>
                         : <>
                             {
-                                (currentUser === 'buyer' || user?.uid) && < Link to='myOrders' >My Orders</Link>
+                                (currentUser === 'buyer' || user?.uid) && < NavLink style={({ isActive }) => isActive ? { color: 'rgb(107, 67, 251)', textDecorationColor: 'rgb(107, 67, 251) ', textDecorationThickness: '3px', textUnderlineOffset: '8px' } : { color: 'black', textDecoration: 'none' }}  className='fw-bold pb-3' to='myOrders' >My Orders</NavLink>
                             }
                         </>
 
