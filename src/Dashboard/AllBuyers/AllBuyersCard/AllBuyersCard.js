@@ -10,10 +10,7 @@ const AllBuyersCard = ({data,handleDelete})=> {
                 <Card.Body>
                     <Card.Title className='fw-bold'>{name}</Card.Title>
                     <p>Email: {email}</p>
-                    <div className='d-flex justify-content-between'>
-                        <Button variant="primary">Verify</Button>
-                        <Button onClick={() => handleDelete(_id)} className='px-3 py-2 fw-bold text-white' variant='primary'>Delete</Button>
-                    </div>
+                    <Button onClick={() => handleDelete(_id)} className='px-3 py-2 fw-bold text-white' variant='primary'>Delete</Button>
                 </Card.Body>
             </Card>
         </Col>
