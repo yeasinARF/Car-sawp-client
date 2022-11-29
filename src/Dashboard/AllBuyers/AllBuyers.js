@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row} from 'react-bootstrap';
 import { useLoaderData } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -7,6 +7,7 @@ import AllBuyersCard from './AllBuyersCard/AllBuyersCard';
 
 const AllBuyers = () => {
     const data = useLoaderData()
+    const [curentBuyers,setCurrentBuyers]=useState(data);
     return (
         <Container>
             <Row className='g-3'>

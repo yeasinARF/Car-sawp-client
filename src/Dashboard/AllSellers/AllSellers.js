@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const AllSellers = () => {
     const data=useLoaderData()
-    const [currentSeller, setCurrentSeller] = useState(data);
+    const [currentSellers, setCurrentSellers] = useState(data);
     // console.log(currentSeller);
     const handleDelete = (_id) => {
         const proceed = window.confirm('Are you sure to delete this seller ?');
@@ -20,8 +20,8 @@ const AllSellers = () => {
                     console.log(data)
                     if (data.deletedCount > 0) {
                         toast("Deleted Successfully");
-                        const remaining =currentSeller.filter(seller => seller._id !== _id)
-                        setCurrentSeller(remaining);
+                        const remaining =currentSellers.filter(seller => seller._id !== _id)
+                        setCurrentSellers(remaining);
                     }
                 })
         }
@@ -30,7 +30,7 @@ const AllSellers = () => {
         <Container>
             <Row className='g-3'>
                 {
-                    currentSeller.map(data=><AllSellersCard handleDelete={handleDelete} data={data} key={data._id}></AllSellersCard>)
+                    currentSellers.map(data=><AllSellersCard handleDelete={handleDelete} data={data} key={data._id}></AllSellersCard>)
                 }
             </Row>
             <ToastContainer />
