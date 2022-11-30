@@ -9,7 +9,7 @@ const AllBuyers = () => {
     const data = useLoaderData()
     const [currentBuyers, setCurrentBuyers] = useState(data);
     const handleDelete = (_id) => {
-        const proceed = window.confirm('Are you sure to delete this seller ?');
+        const proceed = window.confirm('Are you sure to delete this buyer ?');
         if (proceed) {
             fetch(`http://localhost:5000/users/seller/${_id}`, {
                 method: 'DELETE'
@@ -19,7 +19,7 @@ const AllBuyers = () => {
                     console.log(data)
                     if (data.deletedCount > 0) {
                         toast("Deleted Successfully");
-                        const remaining = currentBuyers.filter(seller => seller._id !== _id)
+                        const remaining = currentBuyers.filter(buyer =>buyer._id !== _id)
                         setCurrentBuyers(remaining);
                     }
                 })

@@ -18,91 +18,104 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
     {
-        path:'/',
-        element:<Main></Main>,
-        children:[
+        path: '/',
+        element: <Main></Main>,
+        children: [
             {
-                path:'/',
-                element:<Home></Home>
+                path: '/',
+                element: <Home></Home>
             }
             ,
             {
-                path:'/home',
-                element:<Home></Home>
+                path: '/home',
+                element: <Home></Home>
             }
             ,
             {
-                path:'/allcars',
-                loader:async()=>{
+                path: '/allcars',
+                loader: async () => {
                     return fetch('http://localhost:5000/cars')
                 }
                 ,
-                element:<AllCars></AllCars>
+                element: <AllCars></AllCars>
             }
             ,
             {
-                path:'/category/:id',
-                loader:async({params})=>{
+                path: '/category/:id',
+                loader: async ({ params }) => {
                     return fetch(`http://localhost:5000/cars/${params.id}`);
                 }
                 ,
-                element:<PrivateRoute><Products></Products></PrivateRoute>
+                element: <PrivateRoute><Products></Products></PrivateRoute>
             }
             ,
             {
-                path:'/blog',
-                element:<Blog></Blog>
+                path: '/blog',
+                element: <Blog></Blog>
             }
             ,
             {
-                path:'/login',
-                element:<SignIn></SignIn>
+                path: '/login',
+                element: <SignIn></SignIn>
             }
             ,
             {
-                path:'/register',
-                element:<SignUp></SignUp>
+                path: '/register',
+                element: <SignUp></SignUp>
             }
             ,
             {
-                path:'/dashboard',
-                element:<Layout></Layout>,
-                children:[
+                path: '/dashboard',
+                loader: async () => {
+                    return fetch('http://localhost:5000/users/seller')
+                }
+                ,
+                element: <Layout></Layout>
+                ,
+                children: [
                     {
-                        path:'addProduct',
-                        element:<AddProduct></AddProduct>
+                        path: 'addProduct',
+                        element: <AddProduct></AddProduct>
                     }
                     ,
                     {
-                        path:'myProducts',
-                        element:<MyProducts></MyProducts>
+                        path: 'myProducts/:email',
+                        loader: async ({ params }) => {
+                            return fetch(`http://localhost:5000/products/${params.email}`)
+                        }
+                        ,
+                        element: <MyProducts></MyProducts>
                     }
-                    ,{
-                        path:'myOrders',
-                        element:<MyOrders></MyOrders>
+                    , {
+                        path: 'myOrders',
+                        element: <MyOrders></MyOrders>
                     }
                     ,
                     {
-                        path:'allSellers',
-                        loader:async()=>{
+                        path: 'allSellers',
+                        loader: async () => {
                             return fetch('http://localhost:5000/users/seller')
                         }
                         ,
-                        element:<AllSellers></AllSellers>
+                        element: <AllSellers></AllSellers>
                     }
                     ,
                     {
-                        path:'allBuyers',
-                        loader:async()=>{
+                        path: 'allBuyers',
+                        loader: async () => {
                             return fetch('http://localhost:5000/users/buyer')
                         }
                         ,
-                        element:<AllBuyers></AllBuyers>
+                        element: <AllBuyers></AllBuyers>
                     }
                     ,
                     {
-                        path:'reportedItems',
-                        element:<ReportedItems></ReportedItems>
+                        path: 'reportedItems',
+                        loader: async () => {
+                            return fetch('http://localhost:5000/reportedItems')
+                        }
+                        ,
+                        element: <ReportedItems></ReportedItems>
                     }
                 ]
 
@@ -111,8 +124,8 @@ const router = createBrowserRouter([
     }
     ,
     {
-        path:'*',
-        element:<NotFound></NotFound>
+        path: '*',
+        element: <NotFound></NotFound>
     }
 ]);
 

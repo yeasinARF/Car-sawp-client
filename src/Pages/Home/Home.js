@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import bannerOne from '../../Images/undraw_By_my_car_re_eyri.png';
 import './Home.css';
 import Categories from './Categories/Categories';
+import AdItem from '../../AdItem/AdItem';
 
 const Home = () => {
     const [categorie,setCategorie]=useState([]);
@@ -46,6 +47,9 @@ const Home = () => {
                         <Card className='p-2 card'><h5>2K+ Total Registrations</h5></Card>
                     </Col>
                 </Row>
+            </Container>
+            <Container  className='text-black text-center my-5'>
+                <AdItem></AdItem>
             </Container>
             <Container className='text-black text-center my-5'>
                 <h1 className='py-5'>Choose By Brand</h1>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Card, Col } from 'react-bootstrap';
 import loc from '../../../Images/location.png';
 import seller from '../../../Images/user.png';
@@ -7,12 +7,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ProductCard = ({ data }) => {
-    const { name, img, location, resale_price, original_price, years_of_use, seller_name,_id } = data;
+    const { name, img, location, resale_price, original_price, years_of_use, seller_name,_id ,time,status} = data;
+    const [disable,setDisable]=useState(false)
     const handleReportToAdmin=(_id)=>{
         const reportedItem = {
             name:name,
             img:img,
-            item_id:_id
+            item_id:_id,
+            time:new Date(),
         }
         fetch(`http://localhost:5000/reportedItem/${_id}`, {
             method: "POST",
@@ -26,6 +28,8 @@ const ProductCard = ({ data }) => {
             if(data.acknowledged)
             {
                 toast("Successfully Reported this item");
+                setDisable(true)
+                
             }
             else{
                 toast("Something Went Wrong!");
@@ -41,17 +45,18 @@ const ProductCard = ({ data }) => {
                     <Card.Title className='fw-bold'>{name}</Card.Title>
                     <h6>
                         <p className=''><img className='locImg' src={loc} alt="" /> {location}</p>
-                        <p className=''>Original Price:<span></span> {original_price}</p>
-                        <p className=''>Resale Price:<span></span> {resale_price}</p>
-                        <p className=''>Year of Use:<span></span> {years_of_use}</p>
+                        <p className=''>Original Price: {original_price} Taka</p>
+                        <p className=''>Resale Price: {resale_price} Taka</p>
+                        <p className=''>Year of Use: {years_of_use}</p>
+                        <p className=''>Availability: {status}</p>
                         <div>
                             <p className=''><span><img className='locImg' src={seller} alt="" /></span> {seller_name}</p>
-                            <p className=''>Posted On:<span></span></p>
+                            <p className=''>Posted On:<span>{time}</span></p>
                         </div>
                     </h6>
                     <div className='d-flex justify-content-between'>
                         <Button variant="primary">Book Now</Button>
-                        <Button variant="primary" onClick={()=>handleReportToAdmin(_id)}>Report to Admin</Button>
+                        <Button variant="primary" disabled={disable} onClick={()=>handleReportToAdmin(_id)}>Report to Admin</Button>
                     </div>
                 </Card.Body>
             </Card>

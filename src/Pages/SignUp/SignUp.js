@@ -51,6 +51,7 @@ const SignUp = () => {
                     img:photoURL,
                     rolePermission:role,
                     verified:false,
+                    time:new Date(),
 
                 }
                 fetch("http://localhost:5000/user", {
