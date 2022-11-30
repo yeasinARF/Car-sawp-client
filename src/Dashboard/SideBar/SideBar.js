@@ -31,7 +31,7 @@ const SideBar = () => {
                     </>
                         : <>
                             {
-                                (currentUser === 'buyer' || user?.uid) && < NavLink style={({ isActive }) => isActive ? { color: 'rgb(107, 67, 251)', textDecorationColor: 'rgb(107, 67, 251) ', textDecorationThickness: '3px', textUnderlineOffset: '8px' } : { color: 'blue', textDecoration: 'none' }}  className='fw-bold pb-3' to='myOrders' >My Orders</NavLink>
+                                (currentUser === 'buyer' || user?.uid) && < NavLink style={({ isActive }) => isActive ? { color: 'rgb(107, 67, 251)', textDecorationColor: 'rgb(107, 67, 251) ', textDecorationThickness: '3px', textUnderlineOffset: '8px' } : { color: 'blue', textDecoration: 'none' }}  className='fw-bold pb-3' to={`myOrders/${user?.email}`}>My Orders</NavLink>
                             }
                         </>
 

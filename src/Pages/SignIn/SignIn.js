@@ -26,25 +26,7 @@ const SignIn = () => {
             navigate(from, { replace: true });
             // setLoader(false)
             console.log(user);
-            // const currentUser = {
-            //     email: user.email,
-            // }
-            // //get jwt token
-            // fetch('https://door-step-server.vercel.app/jwt', {
-            //     method: 'POST',
-            //     headers: {
-            //         'content-type': 'application/json'
-            //     },
-            //     body: JSON.stringify(currentUser)
-            // })
-            //     .then(res => res.json())
-            //     .then(data => {
-            //         console.log(data);
-            //         //local storage save jwt
-            //         localStorage.setItem('doorStep-token', data.token);
-            //         
-            //         
-            //     })
+            
         })
         .catch(error => {
             const errorMsg = error.message;

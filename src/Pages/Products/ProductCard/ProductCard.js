@@ -5,6 +5,7 @@ import seller from '../../../Images/user.png';
 import './ProductCard.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BookNow from '../../../BookNow/BookNow';
 
 const ProductCard = ({ data }) => {
     const { name, img, location, resale_price, original_price, years_of_use, seller_name,_id ,time,status} = data;
@@ -55,8 +56,8 @@ const ProductCard = ({ data }) => {
                         </div>
                     </h6>
                     <div className='d-flex justify-content-between'>
-                        <Button variant="primary">Book Now</Button>
-                        <Button variant="primary" disabled={disable} onClick={()=>handleReportToAdmin(_id)}>Report to Admin</Button>
+                        <BookNow data={data}></BookNow>
+                        <Button className='w-100' variant="primary" disabled={disable} onClick={()=>handleReportToAdmin(_id)}>Report to Admin</Button>
                     </div>
                 </Card.Body>
             </Card>
