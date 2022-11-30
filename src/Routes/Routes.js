@@ -34,7 +34,7 @@ const router = createBrowserRouter([
             {
                 path: '/allcars',
                 loader: async () => {
-                    return fetch('http://localhost:5000/cars')
+                    return fetch('https://car-swap-server.vercel.app/cars')
                 }
                 ,
                 element: <AllCars></AllCars>
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 loader: async ({ params }) => {
-                    return fetch(`http://localhost:5000/cars/${params.id}`);
+                    return fetch(`https://car-swap-server.vercel.app/cars/${params.id}`);
                 }
                 ,
                 element: <PrivateRoute><Products></Products></PrivateRoute>
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 loader: async () => {
-                    return fetch('http://localhost:5000/users/seller')
+                    return fetch('https://car-swap-server.vercel.app/users/seller')
                 }
                 ,
                 element: <Layout></Layout>
@@ -81,7 +81,7 @@ const router = createBrowserRouter([
                     {
                         path: 'myProducts/:email',
                         loader: async ({ params }) => {
-                            return fetch(`http://localhost:5000/products/${params.email}`)
+                            return fetch(`https://car-swap-server.vercel.app/products/${params.email}`)
                         }
                         ,
                         element: <MyProducts></MyProducts>
@@ -89,7 +89,7 @@ const router = createBrowserRouter([
                     , {
                         path: 'myOrders/:email',
                         loader: async ({ params }) => {
-                            return fetch(`http://localhost:5000/orders/${params.email}`)
+                            return fetch(`https://car-swap-server.vercel.app/orders/${params.email}`)
                         }
                         ,
                         element: <MyOrders></MyOrders>
@@ -98,7 +98,7 @@ const router = createBrowserRouter([
                     {
                         path: 'allSellers',
                         loader: async () => {
-                            return fetch('http://localhost:5000/users/seller')
+                            return fetch('https://car-swap-server.vercel.app/users/seller')
                         }
                         ,
                         element: <AllSellers></AllSellers>
@@ -107,7 +107,7 @@ const router = createBrowserRouter([
                     {
                         path: 'allBuyers',
                         loader: async () => {
-                            return fetch('http://localhost:5000/users/buyer')
+                            return fetch('https://car-swap-server.vercel.app/users/buyer')
                         }
                         ,
                         element: <AllBuyers></AllBuyers>
@@ -116,7 +116,7 @@ const router = createBrowserRouter([
                     {
                         path: 'reportedItems',
                         loader: async () => {
-                            return fetch('http://localhost:5000/reportedItems')
+                            return fetch('https://car-swap-server.vercel.app/reportedItems')
                         }
                         ,
                         element: <ReportedItems></ReportedItems>

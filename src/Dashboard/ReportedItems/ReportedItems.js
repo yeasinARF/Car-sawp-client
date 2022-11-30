@@ -12,7 +12,7 @@ const ReportedItems = () => {
     const handleDelete = (_id, item_id) => {
         const proceed = window.confirm('Are you sure to delete this Items ?');
         if (proceed) {
-            fetch(`http://localhost:5000/reportedItems/${_id}`, {
+            fetch(`https://car-swap-server.vercel.app/reportedItems/${_id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -21,7 +21,7 @@ const ReportedItems = () => {
                     if (data.deletedCount > 0) {
                         const remaining = currentItems.filter(item => item._id !== _id)
                         setCurrentItems(remaining);
-                        fetch(`http://localhost:5000/car/${item_id}`, {
+                        fetch(`https://car-swap-server.vercel.app/car/${item_id}`, {
                             method: 'DELETE'
                         })
                             .then(res => res.json())

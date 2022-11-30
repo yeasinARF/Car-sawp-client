@@ -17,7 +17,7 @@ const ProductCard = ({ data }) => {
             item_id:_id,
             time:new Date(),
         }
-        fetch(`http://localhost:5000/reportedItem/${_id}`, {
+        fetch(`https://car-swap-server.vercel.app/reportedItem/${_id}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

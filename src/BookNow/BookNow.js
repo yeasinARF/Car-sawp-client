@@ -29,7 +29,7 @@ const BookNow = ({ data }) => {
             buyer_location:meetingLocation,
             payment_status:'unpaid'
         }
-        fetch(`http://localhost:5000/orderItems`, {
+        fetch(`https://car-swap-server.vercel.app/orderItems`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

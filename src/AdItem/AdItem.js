@@ -6,7 +6,7 @@ import AdItemCard from './AdItemCard/AdItemCard';
 const AdItem = () => {
     const [ad, setAd] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/advertise')
+        fetch('https://car-swap-server.vercel.app/advertise')
             .then(res => res.json())
             .then(data => setAd(data))
     }, [])

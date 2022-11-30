@@ -18,7 +18,7 @@ const MyProductsCard = ({ data, handleDelete }) => {
             purchase_year: purchase_year,
             status,
         }
-        fetch('http://localhost:5000/advertise', {
+        fetch('https://car-swap-server.vercel.app/advertise', {
             method: "POST",
             headers: {
                 "content-type": "application/json",

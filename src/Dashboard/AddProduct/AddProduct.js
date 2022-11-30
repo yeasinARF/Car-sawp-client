@@ -51,7 +51,7 @@ const AddProduct = () => {
             status
         }
         console.log(product);
-        fetch("http://localhost:5000/cars", {
+        fetch("https://car-swap-server.vercel.app/cars", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -69,7 +69,7 @@ const AddProduct = () => {
             });
     };
     useEffect(() => {
-        fetch("http://localhost:5000/categories")
+        fetch("https://car-swap-server.vercel.app/categories")
             .then(res => res.json())
             .then(data => setData(data))
     }, [])

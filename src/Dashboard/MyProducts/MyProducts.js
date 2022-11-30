@@ -13,7 +13,7 @@ const MyProducts = () => {
     const handleDelete = (_id) => {
         const proceed = window.confirm('Are you sure to delete this Items ?');
         if (proceed) {
-            fetch(`http://localhost:5000/car/${_id}`, {
+            fetch(`https://car-swap-server.vercel.app/car/${_id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

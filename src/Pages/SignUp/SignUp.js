@@ -54,7 +54,7 @@ const SignUp = () => {
                     time:new Date(),
 
                 }
-                fetch("http://localhost:5000/user", {
+                fetch("https://car-swap-server.vercel.app/user", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",

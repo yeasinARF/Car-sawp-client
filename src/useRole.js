@@ -6,7 +6,7 @@ const useRole = (user) => {
     useEffect(()=>{
         if(user)
         {
-            fetch(`http://localhost:5000/user/${user?.email}`)
+            fetch(`https://car-swap-server.vercel.app/user/${user?.email}`)
             .then(res=>res.json())
             .then(data=>setCurrentUser(data[0].rolePermission))
         }

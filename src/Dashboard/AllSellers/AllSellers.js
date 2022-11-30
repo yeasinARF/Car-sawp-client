@@ -12,7 +12,7 @@ const AllSellers = () => {
     const handleDelete = (_id) => {
         const proceed = window.confirm('Are you sure to delete this seller ?');
         if (proceed) {
-            fetch(`http://localhost:5000/users/seller/${_id}`, {
+            fetch(`https://car-swap-server.vercel.app/users/seller/${_id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

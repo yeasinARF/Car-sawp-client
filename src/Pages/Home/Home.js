@@ -9,7 +9,7 @@ import AdItem from '../../AdItem/AdItem';
 const Home = () => {
     const [categorie,setCategorie]=useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/Categories')
+        fetch('https://car-swap-server.vercel.app/Categories')
         .then(res=>res.json())
         .then(data=>setCategorie(data))
     },[])
