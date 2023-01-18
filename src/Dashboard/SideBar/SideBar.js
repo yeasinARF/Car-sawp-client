@@ -17,12 +17,13 @@ const SideBar = () => {
                     (currentUser === 'seller' || currentUser === 'admin') ? <>
                         {
                             currentUser === 'seller' && <>
-                                <NavLink style={({ isActive }) => isActive ? { color: 'rgb(107, 67, 251)', textDecorationColor: 'rgb(107, 67, 251) ', textDecorationThickness: '3px', textUnderlineOffset: '8px' } : { color: 'blue', textDecoration: 'none' }}  className='fw-bold pb-3 pe-3'  to='addProduct'>Add A Product</NavLink>
+                                <NavLink style={({ isActive }) => isActive ? { color: 'rgb(107, 67, 251)', textDecorationColor: 'rgb(107, 67, 251) ', textDecorationThickness: '3px', textUnderlineOffset: '8px' } : { color: 'blue', textDecoration: 'none' }}  className='fw-bold pb-3 pe-3'  to='addProduct'>Add Product</NavLink>
                                 <NavLink style={({ isActive }) => isActive ? { color: 'rgb(107, 67, 251)', textDecorationColor: 'rgb(107, 67, 251) ', textDecorationThickness: '3px', textUnderlineOffset: '8px' } : { color: 'blue', textDecoration: 'none' }}  className='fw-bold pb-3 pe-3' to={`myProducts/${user?.email}`}>My Products</NavLink>
                             </>
                         }
                         {
                             currentUser === 'admin'&&<>
+                                <NavLink style={({ isActive }) => isActive ? { color: 'rgb(107, 67, 251)', textDecorationColor: 'rgb(107, 67, 251) ', textDecorationThickness: '3px', textUnderlineOffset: '8px' } : { color: 'blue', textDecoration: 'none' }}  className='fw-bold pb-3 pe-3'  to='addCategory'>Add Category</NavLink>
                                 <NavLink style={({ isActive }) => isActive ? { color: 'rgb(107, 67, 251)', textDecorationColor: 'rgb(107, 67, 251) ', textDecorationThickness: '3px', textUnderlineOffset: '8px' } : { color: 'blue', textDecoration: 'none' }}  className='fw-bold pb-3 pe-3' to='allSellers'>All Sellers</NavLink>
                                 <NavLink style={({ isActive }) => isActive ? { color: 'rgb(107, 67, 251)', textDecorationColor: 'rgb(107, 67, 251) ', textDecorationThickness: '3px', textUnderlineOffset: '8px' } : { color: 'blue', textDecoration: 'none' }}  className='fw-bold pb-3 pe-3' to='allBuyers'>All Buyers</NavLink>
                                 <NavLink style={({ isActive }) => isActive ? { color: 'rgb(107, 67, 251)', textDecorationColor: 'rgb(107, 67, 251) ', textDecorationThickness: '3px', textUnderlineOffset: '8px' } : { color: 'blue', textDecoration: 'none' }}  className='fw-bold pb-3 pe-3'to='reportedItems'>Reported Items</NavLink>

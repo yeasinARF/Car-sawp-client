@@ -13,6 +13,7 @@ const AddProduct = () => {
     const handleChange = (e) => {
         setCategoryId(e.target.value);
         console.log(e.target.value);
+        
     }
     const handleAddProduct = (e) => {
         e.preventDefault();
@@ -76,7 +77,7 @@ const AddProduct = () => {
     
 
     return (
-        <Container>
+        <Container className='mx-auto'>
             <h1 className='fw-bold text-black text-center py-4'>Add New Product</h1>
             <Row>
                 <Col md={10} lg={7} className="mx-auto my-3">

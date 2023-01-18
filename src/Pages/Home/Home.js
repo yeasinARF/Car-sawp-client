@@ -52,7 +52,7 @@ const Home = () => {
                 <AdItem></AdItem>
             </Container>
             <Container className='text-black text-center my-5'>
-                <h1 className='py-5'>Choose By Brand</h1>
+                <h1 className='py-5'>Browse Brands</h1>
                 <Row className='g-3'>
                     {
                         categorie.map(data=><Categories data={data} key={data._id}></Categories>)
