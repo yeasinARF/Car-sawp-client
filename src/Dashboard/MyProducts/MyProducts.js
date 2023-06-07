@@ -32,7 +32,7 @@ const MyProducts = () => {
         <Container>
             <Row className='g-3'>
                 {
-                    currentProducts.length === 0 ? <p className='text-center fw-bold py-3 text-black'>You have no Products!</p>
+                    currentProducts.length === 0 ? <p className=' fw-bold py-3 text-black text-center'>You have no Products!</p>
                         : currentProducts.map(data => <MyProductsCard handleDelete={handleDelete} data={data} key={data._id}></MyProductsCard>)
 
                 }

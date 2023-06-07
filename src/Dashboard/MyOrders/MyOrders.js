@@ -11,7 +11,7 @@ const MyOrders = () => {
         <Container>
             <Row className='g-3'>
                 {
-                    currentProducts.length === 0 ? <p className='text-center fw-bold py-3 text-black'>You have no Ordered Product!</p>
+                    currentProducts.length === 0 ? <p className='text-center fw-bold py-3 text-black'>No Order Yet!</p>
                         : currentProducts.map(data => <MyOrdersCard data={data} key={data._id}></MyOrdersCard>)
                 }
             </Row>

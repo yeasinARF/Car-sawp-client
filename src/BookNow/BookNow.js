@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const BookNow = ({ data }) => {
-    const { name, resale_price, original_price, img } = data;
+    const { name, resale_price, original_price, img,seller_email } = data;
     const { user } = useContext(AuthContext)
     const [show, setShow] = useState(false);
     const handleClose = () => {
@@ -21,7 +21,9 @@ const BookNow = ({ data }) => {
         const OrderItems = {
             name: name,
             img: img,
+            buyer_name:user.displayName,
             email:user.email,
+            seller_email,
             resale_price,
             original_price,
             time: new Date(),
@@ -51,7 +53,7 @@ const BookNow = ({ data }) => {
     return (
         <Container>
 
-            <Button variant="primary" onClick={handleShow}>
+            <Button style={{ backgroundColor: '#6B43FB', width: '130px', height: '40px', fontSize: '1rem', border: 'none' }} onClick={handleShow}>
                 Book Now
             </Button>
 
@@ -98,12 +100,7 @@ const BookNow = ({ data }) => {
                             className="mb-3"
                             controlId="exampleForm.ControlInput1"
                         >
-                            <Form.Control
-                                type="text"
-                                placeholder="buying price"
-                                defaultValue={original_price}
-                                disabled
-                            />
+                            
                         </Form.Group>
                         <Form.Group
                             className="mb-3"
@@ -112,7 +109,7 @@ const BookNow = ({ data }) => {
                             <Form.Control
                                 type="text"
                                 placeholder="selling price"
-                                defaultValue={resale_price}
+                                defaultValue={`Price: $ ${resale_price}`}
                                 disabled
                             />
                         </Form.Group>

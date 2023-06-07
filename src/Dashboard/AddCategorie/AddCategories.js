@@ -1,18 +1,21 @@
-import React from 'react';
-import { Button, Container, Form } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from '../../Utilities/Context/UserContext';
 
 const AddCategories = () => {
-    const handleAddCategory = (e)=>{
+    const { user } = useContext(AuthContext)
+    const handleAddCategory = (e) => {
         e.preventDefault();
-        const form=e.target;
-        const name=form.category.value;
-        const image=form.categoryImage.value;
+        const form = e.target;
+        const name = form.category.value;
+        const image = form.categoryImage.value;
         const category = {
             name,
             img: image,
             time: new Date(),
+            seller_email: user.email,
         }
         fetch("http://localhost:5000/categories", {
             method: "POST",
@@ -29,22 +32,26 @@ const AddCategories = () => {
                 }
             });
     }
-    
+
     return (
         <Container>
-            <Form onSubmit={handleAddCategory}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Category Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter category name" name='category' required />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Category Image</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Category Image Url" name="categoryImage" required />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
-            </Form>
+            <Row className='mb-5'>
+                <Col md={8}>
+                    <Form onSubmit={handleAddCategory}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label><span className='pe-2' style={{ color: 'red', fontSize: '1.2rem' }}>*</span>Brand Name</Form.Label>
+                            <Form.Control type="text" placeholder="Enter brand name" name='category' required />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label><span className='pe-2' style={{ color: 'red', fontSize: '1.2rem' }}>*</span>Brand Image</Form.Label>
+                            <Form.Control type="text" placeholder="Enter brand Image Url" name="categoryImage" required />
+                        </Form.Group>
+                        <Button style={{ backgroundColor: '#6B43FB', width: '130px', height: '40px', fontSize: '1.2rem', border: 'none' }} type="submit">
+                            Create
+                        </Button>
+                    </Form>
+                </Col>
+            </Row>
             <ToastContainer />
         </Container>
     );

@@ -5,6 +5,7 @@ import { AuthContext } from '../../Utilities/Context/UserContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getAuth, updateProfile } from 'firebase/auth';
+import reg from '../../Images/register.png'
 import app from '../../firebase/firebase.config';
 
 const auth = getAuth(app);
@@ -37,21 +38,21 @@ const SignUp = () => {
                 updateProfile(auth.currentUser, {
                     displayName: displayName, photoURL: photoURL
                 }).then(() => {
-                    
+
                     console.log('profile updated');
                 }).catch((error) => {
                     console.log(error);
                 });
                 navigate('/login')
                 toast("Registered Successfully");
-                
+
                 const currentUser = {
-                    name:displayName,
+                    name: displayName,
                     email: email,
-                    img:photoURL,
-                    rolePermission:role,
-                    verified:false,
-                    time:new Date(),
+                    img: photoURL,
+                    rolePermission: role,
+                    verified: false,
+                    time: new Date(),
 
                 }
                 fetch("https://car-swap-server.vercel.app/user", {
@@ -61,10 +62,10 @@ const SignUp = () => {
                     },
                     body: JSON.stringify(currentUser),
                 })
-                .then((res) => res.json())
-                .then((data) =>console.log(data))
-                .catch(err => console.error(err));
-                
+                    .then((res) => res.json())
+                    .then((data) => console.log(data))
+                    .catch(err => console.error(err));
+
             })
             .catch(error => {
                 const errorMsg = error.message;
@@ -75,9 +76,12 @@ const SignUp = () => {
     return (
         <Container>
             <Row>
-                <Col className='mx-auto' lg={5} md={8} sm={9} xs={10} >
+                <Col className='mx-auto' lg={6} md={6} sm={11} xs={11} >
+                    <img className='img-fluid rounded' src={reg} alt="" />
+                </Col>
+                <Col className='mx-auto' lg={6} md={6} sm={11} xs={11} >
                     <Form onSubmit={handleSignUp} className='container rounded formContainer mx-auto text-black my-3 pt-2'>
-                        <h1 className='py-3'>Create Account</h1>
+                        <h1 className='py-3 text-center'>Create Account</h1>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Full Name</Form.Label>
                             <Form.Control type="text" placeholder="Full Name" name="name" required />
@@ -118,7 +122,7 @@ const SignUp = () => {
                                 />
                             </div>
                         ))}
-                        <Button variant="primary" type="submit">
+                        <Button style={{ backgroundColor: '#6B43FB', width: '110px', height: '40px', fontSize: '1rem', border: 'none' }} type="submit">
                             Register
                         </Button>
                         <p className='py-3 text-danger'>{error}</p>

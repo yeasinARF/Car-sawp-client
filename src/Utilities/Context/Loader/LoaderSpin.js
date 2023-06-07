@@ -10,7 +10,7 @@ const LoaderSpin = () => {
                 height={100}
                 width={100}
                 radius={5}
-                color="#4fa94d"
+                color="#6B43FB"
                 ariaLabel="ball-triangle-loading"
                 wrapperClass={{}}
                 wrapperStyle=""

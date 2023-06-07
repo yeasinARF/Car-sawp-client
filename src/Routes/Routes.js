@@ -16,6 +16,11 @@ import Products from "../Pages/Products/Products";
 import SignIn from "../Pages/SignIn/SignIn";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import IndividualProduct from "../Pages/IndividualProducts/IndividualProduct";
+import AdminSignIn from "../AdminPanel/AdminLogin/AdminSignIn";
+import AllCategories from "../Dashboard/AllCategories/AllCategories";
+import CustomerOrder from "../Dashboard/CustomerOrder/CustomerOrder";
+import Overall from "../Dashboard/Overall/Overall";
 
 const router = createBrowserRouter([
     {
@@ -35,19 +40,28 @@ const router = createBrowserRouter([
             {
                 path: '/allcars',
                 loader: async () => {
-                    return fetch('https://car-swap-server.vercel.app/cars')
+                    return fetch('http://localhost:5000/cars')
                 }
                 ,
-                element: <AllCars></AllCars>
+                element: <PrivateRoute><AllCars></AllCars></PrivateRoute>
             }
             ,
             {
-                path: '/category/:id',
+                path: '/specific-car/:id',
                 loader: async ({ params }) => {
                     return fetch(`https://car-swap-server.vercel.app/cars/${params.id}`);
                 }
                 ,
                 element: <PrivateRoute><Products></Products></PrivateRoute>
+            }
+            ,
+            {
+                path: '/singleCar/:item_id',
+                loader: async ({ params }) => {
+                    return fetch(`http://localhost:5000/advertise/${params.item_id}`);
+                }
+                ,
+                element: <PrivateRoute><IndividualProduct></IndividualProduct></PrivateRoute>
             }
             ,
             {
@@ -66,12 +80,12 @@ const router = createBrowserRouter([
             }
             ,
             {
-                path: '/dashboard',
+                path: '/',
                 loader: async () => {
                     return fetch('https://car-swap-server.vercel.app/users/seller')
                 }
                 ,
-                element: <Layout></Layout>
+                element: <PrivateRoute><Layout></Layout></PrivateRoute>
                 ,
                 children: [
                     {
@@ -99,6 +113,29 @@ const router = createBrowserRouter([
                         }
                         ,
                         element: <MyOrders></MyOrders>
+                    }
+                    ,
+                    {
+                        path: 'order/:email',
+                        loader: async ({ params }) => {
+                            return fetch(`http://localhost:5000/customerOrder/${params.email}`)
+                        }
+                        ,
+                        element:<CustomerOrder></CustomerOrder>
+                    }
+                    , {
+                        path: 'allBrand/:email',
+                        loader: async ({ params }) => {
+                            return fetch(`http://localhost:5000/categories/${params.email}`)
+                        }
+                        ,
+                        element: <AllCategories></AllCategories>
+                    }
+                    ,
+                    {
+                        path: 'dashboard',
+                        
+                        element:<Overall></Overall>
                     }
                     ,
                     {
@@ -131,6 +168,11 @@ const router = createBrowserRouter([
 
             }
         ]
+    }
+    ,
+    {
+        path:'admin-login',
+        element:<AdminSignIn></AdminSignIn>
     }
     ,
     {
