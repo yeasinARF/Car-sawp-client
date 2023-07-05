@@ -1,11 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../Utilities/Context/UserContext';
 
 const AddCategories = () => {
+
     const { user } = useContext(AuthContext)
+    const [exist, setExist] = useState()
+    useEffect(() => {
+        fetch('https://car-swap-server.vercel.app/Categories')
+            .then(res => res.json())
+            .then(data => setExist(data))
+    }, [])
+    // add category 
     const handleAddCategory = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -17,20 +25,32 @@ const AddCategories = () => {
             time: new Date(),
             seller_email: user.email,
         }
-        fetch("http://localhost:5000/categories", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(category),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.acknowledged) {
-                    toast("Category Added Successfully");
-                    e.target.reset();
-                }
-            });
+
+        // for remove any kind of space in string [replace(/\s+/g, '')]
+        const ex = exist.find(x => (x.name).replace(/\s+/g, '').toLowerCase() === (name).replace(/\s+/g, '').toLowerCase())
+
+        // check is same data exist
+        if (ex) {
+            toast.error("Name Already Exist");
+            return;
+        }
+        else {
+            fetch("http://localhost:5000/categories", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify(category),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.acknowledged) {
+                        toast("Category Added Successfully");
+                        e.target.reset();
+                    }
+                });
+        }
+
     }
 
     return (

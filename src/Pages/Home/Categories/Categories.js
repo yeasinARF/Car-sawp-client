@@ -8,7 +8,6 @@ const Categories = ({data}) => {
     return (
         <Col md={4} lg={4}>
             <Link to={`/specific-car/${_id}`}className='text-decoration-none text-black '>
-                
                 <Card className='p-2 card cd border-0' style={{boxShadow:"2px 2px 10px 4px rgb(211, 211, 211)",backgroundColor:"rgb(227, 227, 227)"}}>
                     <div>
                         <img src={img} alt="" />

@@ -7,15 +7,39 @@ import { AuthContext } from '../../Utilities/Context/UserContext';
 import moment from 'moment/moment';
 
 const AddProduct = () => {
-    const { user } = useContext(AuthContext)
+    const { user, verify } = useContext(AuthContext)
     const [data, setData] = useState([])
     const navigate = useNavigate();
     const [categoryId, setCategoryId] = useState('');
+    const [exist, setExist] = useState()
+    const [regPrice, setRegPrice] = useState()
+    const [salePrice, setSalePrice] = useState()
+    // products data 
+    useEffect(() => {
+        fetch(`http://localhost:5000/products/${user.email}`)
+            .then(res => res.json())
+            .then(data => setExist(data))
+    }, [])
     const handleChange = (e) => {
         setCategoryId(e.target.value);
         console.log(e.target.value);
 
     }
+    const handlePrice = e => {
+        const value = e.target.value;
+        const regularPrice = parseInt(value);
+        setRegPrice(regularPrice);
+
+    }
+    const handleSale = e => {
+        const value = e.target.value;
+        const saleP = parseInt(value)
+        setSalePrice(saleP)
+
+
+
+    }
+
     const handleAddProduct = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -31,10 +55,13 @@ const AddProduct = () => {
         const location = form.location.value;
         const condition = form.group1.value;
         const status = form.status.value;
+        const item_code = Math.floor(Math.random() * (100000 - 10000 + 1) + 10000);
+
         if (categoryId === '') {
             alert('Please chose a category!')
             return
         }
+
 
         const product = {
             category_id: categoryId,
@@ -53,25 +80,43 @@ const AddProduct = () => {
             purchase_year: purchaseYear,
             description: description,
             stockQuantity: stockQuantity,
+            seller_verify: verify.verified,
+            item_code,
             status
         }
-        console.log(product);
-        fetch("https://car-swap-server.vercel.app/cars", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(product),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.acknowledged) {
+        // console.log(product);
+        const ex = exist.find(x => (x.name).replace(/\s+/g, '').toLowerCase() === (name).replace(/\s+/g, '').toLowerCase())
+        if (ex) {
+            toast.error("Name Already Exist");
+            return;
+        }
+        else {
+            if (salePrice >= regPrice) {
+                toast.error('Resale price should be less')
+                return;
+            }
+            else {
+                fetch("http://localhost:5000/cars", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                    body: JSON.stringify(product),
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.acknowledged) {
 
-                    navigate(`/myProducts/${user?.email}`)
-                    toast("Product Added Successfully");
-                    e.target.reset();
-                }
-            });
+                            navigate(`/myProducts/${user?.email}`)
+                            toast.success("Product Added Successfully");
+                            e.target.reset();
+                        }
+                    });
+            }
+
+
+        }
+
     };
     useEffect(() => {
         fetch("https://car-swap-server.vercel.app/categories")
@@ -98,11 +143,11 @@ const AddProduct = () => {
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formBasicPassword">
                                     <Form.Label className='text-black'><span className='pe-2' style={{ color: 'red', fontSize: '1.2rem' }}>*</span>Original Price:</Form.Label>
-                                    <Form.Control type="text" name='originalPrice' placeholder="Original Price" required />
+                                    <Form.Control onChange={handlePrice} type="number" name='originalPrice' placeholder="Original Price" required />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formBasicPassword">
                                     <Form.Label className='text-black'><span className='pe-2' style={{ color: 'red', fontSize: '1.2rem' }}>*</span>Resale Price:</Form.Label>
-                                    <Form.Control type="text" name='resalePrice' placeholder="Resale Price" required />
+                                    <Form.Control onChange={handleSale} type="number" name='resalePrice' placeholder="Resale Price" required />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formBasicPassword">
                                     <Form.Label className='text-black'><span className='pe-2' style={{ color: 'red', fontSize: '1.2rem' }}>*</span>Stock Quantity</Form.Label>
@@ -156,7 +201,7 @@ const AddProduct = () => {
                                 </Form.Group>
 
                                 <label><span className='pe-2' style={{ color: 'red', fontSize: '1.2rem' }}>*</span>Choose Brand: </label><br></br>
-                                <select onChange={handleChange} style={{ border: 'none', outline: 'none' }} required >
+                                <select onChange={handleChange} style={{ border: 'none', outline: 'none', height: '40px', borderRadius: '6px' }} required >
                                     <option value="Select an Option" selected disabled hidden  >Select an Option</option>
                                     {
                                         data.map(d => <option key={d._id} value={d._id}>{d.name}</option>)

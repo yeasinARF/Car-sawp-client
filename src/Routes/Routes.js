@@ -21,6 +21,9 @@ import AdminSignIn from "../AdminPanel/AdminLogin/AdminSignIn";
 import AllCategories from "../Dashboard/AllCategories/AllCategories";
 import CustomerOrder from "../Dashboard/CustomerOrder/CustomerOrder";
 import Overall from "../Dashboard/Overall/Overall";
+import AboutSection from "../AboutSection/AboutSection";
+import Contact from "../Contact/Contact";
+import MyProfileSection from "../MyProfile/MyProfileSection";
 
 const router = createBrowserRouter([
     {
@@ -65,8 +68,13 @@ const router = createBrowserRouter([
             }
             ,
             {
-                path: '/blog',
-                element: <Blog></Blog>
+                path: '/aboutUs',
+                element: <AboutSection></AboutSection>
+            }
+            ,
+            {
+                path: '/contactUs',
+                element: <Contact></Contact>
             }
             ,
             {
@@ -79,6 +87,9 @@ const router = createBrowserRouter([
                 element: <SignUp></SignUp>
             }
             ,
+            
+            
+            
             {
                 path: '/',
                 loader: async () => {
@@ -94,14 +105,20 @@ const router = createBrowserRouter([
                     }
                     ,
                     {
-                        path:'addCategory',
-                        element:<AddCategories></AddCategories>
+                        
+                        
+                        path: 'addCategory',
+                        loader: async () => {
+                            return fetch('http://localhost:5000/categories')
+                        }
+                        ,
+                        element: <AddCategories></AddCategories>
                     }
                     ,
                     {
                         path: 'myProducts/:email',
                         loader: async ({ params }) => {
-                            return fetch(`https://car-swap-server.vercel.app/products/${params.email}`)
+                            return fetch(`http://localhost:5000/products/${params.email}`)
                         }
                         ,
                         element: <MyProducts></MyProducts>
@@ -109,7 +126,7 @@ const router = createBrowserRouter([
                     , {
                         path: 'myOrders/:email',
                         loader: async ({ params }) => {
-                            return fetch(`https://car-swap-server.vercel.app/orders/${params.email}`)
+                            return fetch(`http://localhost:5000/orders/${params.email}`)
                         }
                         ,
                         element: <MyOrders></MyOrders>
@@ -121,7 +138,7 @@ const router = createBrowserRouter([
                             return fetch(`http://localhost:5000/customerOrder/${params.email}`)
                         }
                         ,
-                        element:<CustomerOrder></CustomerOrder>
+                        element: <CustomerOrder></CustomerOrder>
                     }
                     , {
                         path: 'allBrand/:email',
@@ -134,8 +151,8 @@ const router = createBrowserRouter([
                     ,
                     {
                         path: 'dashboard',
-                        
-                        element:<Overall></Overall>
+
+                        element: <Overall></Overall>
                     }
                     ,
                     {
@@ -164,6 +181,12 @@ const router = createBrowserRouter([
                         ,
                         element: <ReportedItems></ReportedItems>
                     }
+                    ,
+                    {
+                        path: 'profile',
+                        element: <MyProfileSection></MyProfileSection>
+                    }
+                    ,
                 ]
 
             }
@@ -171,9 +194,10 @@ const router = createBrowserRouter([
     }
     ,
     {
-        path:'admin-login',
-        element:<AdminSignIn></AdminSignIn>
+        path: 'admin-login',
+        element: <AdminSignIn></AdminSignIn>
     }
+    
     ,
     {
         path: '*',

@@ -14,12 +14,12 @@ const Layout = () => {
 
             <h1 className='text-center fs-5 py-4'>Welcome, <span style={{ color: 'rgb(104, 33, 218)' }}>{user?.displayName}</span> to Dashboard Panel! </h1>
             <Row className='g-2'>
-                <Col md={10} lg={4} className='mx-auto'>
+                <Col md={10} lg={3} className='mx-auto'>
                     <SideBar></SideBar>
 
 
                 </Col>
-                <Col md={10} lg={8} className='mx-auto'>
+                <Col md={11} lg={9} className='mx-auto'>
                     <Outlet></Outlet>
                 </Col>
             </Row>

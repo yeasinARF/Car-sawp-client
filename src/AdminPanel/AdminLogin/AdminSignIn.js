@@ -41,7 +41,7 @@ const AdminSignIn = () => {
             <Container>
                 <Row>
                     <Col className='mx-auto' lg={6} md={6} sm={11} xs={11} >
-                        <img className='img-fluid rounded' src={admin} alt="" />
+                        <img className='img-fluid rounded ' src={admin} alt="" />
                     </Col>
                     <Col className='mx-auto mt-4' lg={5} md={8} sm={9} xs={10} >
                         <Form onSubmit={handleLogIn} className='container rounded formContainer mx-auto text-black my-3 pt-2'>
@@ -59,7 +59,7 @@ const AdminSignIn = () => {
                             </Button>
 
                             <p className='fw-bold my-3' style={{ fontSize: '1.2rem' }}>Demo Admin Account Details</p>
-                            <p>Email: admin@gmail.com</p>
+                            <p>Email: adminexample@gmail.com</p>
                             <p>Password: 12345678</p>
                             <p className='py-3 text-danger'>{error}</p>
 

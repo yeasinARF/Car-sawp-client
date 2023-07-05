@@ -1,22 +1,44 @@
 import React from 'react';
 import { Button, Card, Col } from 'react-bootstrap';
-
-const AllCategoriesCard = ({ data }) => {
-    const { name, img } = data;
+import { FaTrashAlt } from 'react-icons/fa';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
+import defaultImage from '../../Images/icar.png'
+import BrandEdit from './BrandEdit/BrandEdit';
+const AllCategoriesCard = ({ data, i, handleDelete }) => {
+    const { name, img, _id } = data;
     return (
-        <Col md={4} lg={4} xs={8} className='mx-auto' >
-            <Card className='p-2 card mb-3 cardProduct' style={{ boxShadow: "2px 2px 10px 4px rgb(211, 211, 211)", backgroundColor: "rgb(227, 227, 227)", border: 'none' }} >
-                <Card.Img variant="top" className='w-100 rounded img-fluid' style={{ height: '80px' }} src={img} />
-                <Card.Body>
-                    <Card.Title className='fw-bold'>{name}</Card.Title>
-                    <div className='d-flex' style={{ justifyContent: 'space-between' }}>
-                        <Button style={{ backgroundColor: '#6B43FB', width: '70px', height: '35px', fontSize: '0.9rem', border: 'none' }}>Edit</Button>
-                        <Button style={{ backgroundColor: '#6B43FB', width: '70px', height: '35px', fontSize: '0.9rem', border: 'none' }}>Delete</Button>
-                    </div>
+        <>
+            <tbody style={{ fontSize: '0.8rem' }}>
+                {/* row 1 */}
+                <tr style={{ borderBottom: '1px solid #CECECE' }}>
 
-                </Card.Body>
-            </Card>
-        </Col>
+                    <td>{i + 1}</td>
+                    {/* <th>
+                        <label>
+                            <input type="checkbox" checked={check} className="checkbox" />
+                        </label>
+                    </th> */}
+                    <td>
+                        {name}
+                    </td>
+                    <td >
+                        <PhotoProvider>
+                            <PhotoView src={img ? img : defaultImage} >
+                                <img src={img ? img : defaultImage} alt="product" style={{ height: '35px', width: '35px', borderRadius: '50%', cursor: 'pointer' }} />
+                                {/* <img src={eye} alt='view' style={{height:'25px', width:'25px'}}/> */}
+                            </PhotoView>
+                        </PhotoProvider>
+                    </td>
+                    <td>
+                        <div className='d-flex' style={{ justifyContent: 'space-between' }}>
+                            <BrandEdit data={data}></BrandEdit>
+                            <span onClick={() => handleDelete(_id)} className='  fw-bold ' ><FaTrashAlt style={{ color: 'rgb(107, 67, 251)', cursor: 'pointer' }}></FaTrashAlt></span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </>
     );
 };
 

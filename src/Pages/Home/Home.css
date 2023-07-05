@@ -30,3 +30,18 @@
 .regBuyer .register{
     padding-top: 140px;
 }
+.bannerImg{
+    margin-top:-80px;
+}
+.sellLeftSide .bannerImg{
+    margin-top:-40px;
+}
+@media  (max-width:1040px) {
+
+    .leftSide .bannerImg{
+        margin-top: 0px;
+    }
+    .sellLeftSide .bannerImg{
+        margin-top:0px;
+    }
+}

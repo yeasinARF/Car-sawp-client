@@ -37,7 +37,8 @@ const ReportedItems = () => {
     }
     return (
         <Container>
-            <Row className='g-3'>
+            <h5 style={{boxShadow:"2px 2px 10px 4px rgb(211, 211, 211)",backgroundColor:"rgb(227, 227, 227)",border:'none',width:'120px',borderRadius:'5px',padding:'5px'}} ><span style={{color:'#6B43FB'}}>Total:</span> {currentItems.length}</h5>
+            <Row className='g-3 my-1'>
                 {currentItems.map(data => <ReportedItemsCard handleDelete={handleDelete} data={data} key={data._id}></ReportedItemsCard>)}
             </Row>
             <ToastContainer />

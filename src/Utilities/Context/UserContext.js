@@ -11,6 +11,7 @@ const providerGit = new GithubAuthProvider();
 const UserContext = ({children}) => {
     const [user,setUser]=useState(null);
     const[loader,setLoader]=useState(true);
+    const [verify,setVerify]=useState([]);
     const signUp=(email,password)=>{
         setLoader(true);
         return createUserWithEmailAndPassword(auth,email,password)
@@ -38,7 +39,12 @@ const UserContext = ({children}) => {
         })
         return ()=>unSubscribe();
     },[])
-    const authInfo={user,signUp,logIn,logInWithGoogle,logInWithGitHub,logOut,loader,setLoader}
+    useEffect(() => {
+        fetch('https://car-swap-server.vercel.app/users/seller')
+            .then(res => res.json())
+            .then(data => setVerify(data))
+    }, [])
+    const authInfo={verify,user,signUp,logIn,logInWithGoogle,logInWithGitHub,logOut,loader,setLoader}
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

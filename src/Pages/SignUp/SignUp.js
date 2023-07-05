@@ -51,8 +51,9 @@ const SignUp = () => {
                     email: email,
                     img: photoURL,
                     rolePermission: role,
-                    verified: false,
+                    verified:'false',
                     time: new Date(),
+
 
                 }
                 fetch("https://car-swap-server.vercel.app/user", {
@@ -74,28 +75,28 @@ const SignUp = () => {
             })
     }
     return (
-        <Container>
-            <Row>
-                <Col className='mx-auto' lg={6} md={6} sm={11} xs={11} >
-                    <img className='img-fluid rounded' src={reg} alt="" />
+        <Container >
+            <Row >
+                <Col className='mx-auto' lg={7} md={10} sm={12} xs={12} >
+                    <img className='img-fluid rounded d-lg-block d-none' style={{marginTop:'-60px'}} src={reg} alt="" />
                 </Col>
-                <Col className='mx-auto' lg={6} md={6} sm={11} xs={11} >
+                <Col className='mx-auto ' lg={5} md={10} sm={12} xs={12} >
                     <Form onSubmit={handleSignUp} className='container rounded formContainer mx-auto text-black my-3 pt-2'>
-                        <h1 className='py-3 text-center'>Create Account</h1>
+                        <h2 className='py-3 text-start'>Create Account</h2>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Full Name</Form.Label>
+                            <Form.Label><span className='pe-2' style={{ color: 'red', fontSize: '1.2rem' }}>*</span>Full Name</Form.Label>
                             <Form.Control type="text" placeholder="Full Name" name="name" required />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Photo Url</Form.Label>
+                        <Form.Group className="mb-3 " controlId="formBasicEmail">
+                            <Form.Label><span className='pe-2' style={{ color: 'red', fontSize: '1.2rem' }}>*</span>Photo Url</Form.Label>
                             <Form.Control type="text" placeholder="Photo Url" name="picture" required />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
+                        <Form.Group className="mb-3 " controlId="formBasicEmail">
+                            <Form.Label><span className='pe-2' style={{ color: 'red', fontSize: '1.2rem' }}>*</span>Email address</Form.Label>
                             <Form.Control type="email" placeholder="Enter email" name="email" required />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
+                        <Form.Group className="mb-3 " controlId="formBasicPassword">
+                            <Form.Label><span className='pe-2' style={{ color: 'red', fontSize: '1.2rem' }}>*</span>Password</Form.Label>
                             <Form.Control type="password" placeholder="Password" name="password" required />
                         </Form.Group>
                         {['radio'].map((type) => (
@@ -126,7 +127,7 @@ const SignUp = () => {
                             Register
                         </Button>
                         <p className='py-3 text-danger'>{error}</p>
-                        <p className='text-center pb-2'>Already have an account?<Link className="text-primary" to='/login'>Login</Link></p>
+                        <p className='text-start text-lg-center pb-2'>Already have an account?<Link className="text-primary" to='/login'>Login</Link></p>
                     </Form>
                 </Col>
             </Row>

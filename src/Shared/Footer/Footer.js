@@ -21,9 +21,9 @@ const Footer = () => {
                 <div className="row">
                     <div className="col-md-4 mt-md-0 mt-3 ps-5 text-md-start">
                         
-                        <h5 className="py-2  fw-bold" style={{color:'#6B43FB',fontSize:'2rem'}}>CarSwap</h5>
+                        <h5 className="py-2  fw-bold" style={{color:'black',fontSize:'2rem',cursor:'pointer'}}>Car<span style={{color:'#6B43FB'}}>Swap</span></h5>
                         <p>It is a top second-hand car buying platform.We have gained popularity by providing good service.</p>
-                        <div className="social">
+                        <div className="social mb-2">
                             <a className='pe-3' href='https://www.facebook.com/profile.php?id=100009509407869' target='_blank' ><FaFacebook style={{color:'#6B43FB',fontSize:'1.5rem'}}></FaFacebook></a>
                             <a className='pe-3' href='https://www.instagram.com/farhan__asif/' target='_blank'><FaInstagram style={{color:'#6B43FB',fontSize:'1.5rem'}}></FaInstagram ></a>
                             <a className='pe-3' href='https://www.youtube.com/@CoderWeb' target='_blank'><FaYoutube style={{color:'#6B43FB',fontSize:'1.5rem'}}></FaYoutube></a>
@@ -33,8 +33,8 @@ const Footer = () => {
                     <div className="col-md-4 mb-md-0 mb-3">
                         <h5 className="text-uppercase"style={{fontSize:'1rem'}}>Contact</h5>
                         <ul className="list-unstyled">
-                            <li><Link to='/about' style={{ textDecoration: "none", color: "black" }}>About</Link></li>
-                            <li><Link to='/address' style={{ textDecoration: "none", color: "black" }}>Address</Link></li>
+                            <li><Link to='/aboutUs' style={{ textDecoration: "none", color: "black" }}>About Us</Link></li>
+                            <li><Link to='/contactUs' style={{ textDecoration: "none", color: "black" }}>Contact Us</Link></li>
                         </ul>
                     </div>
                     <div className="col-md-4 mb-md-0 mb-3">

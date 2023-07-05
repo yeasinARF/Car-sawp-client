@@ -6,122 +6,144 @@ import 'react-toastify/dist/ReactToastify.css';
 import edit from '../../../../Images/edit.png';
 
 const EditProduct = ({ data }) => {
-    const { name, resale_price, original_price, img, stockQuantity } = data;
+    const { name,_id, resale_price, original_price,item_code , stockQuantity } = data;
     const { user } = useContext(AuthContext)
     const [show, setShow] = useState(false);
+    // console.log(_id)
+    const [nameUpdate, setNameUpdate] = useState(data);
+    const [stockUpdate, setStockUpdate] = useState(data);
+    const [saleUpdate, setSaleUpdate] = useState(data);
 
     const handleClose = () => {
-
+        window.location.reload();
         setShow(false)
     }
     const handleShow = () => setShow(true);
-    const handleAddOrder = (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const meetingLocation = form.location.value;
-        const phoneNumber = form.number.value;
-        const UpdateItems = {
-            name: name,
-            img: img,
-            buyer_name: user.displayName,
-            email: user.email,
-            resale_price,
-            original_price,
-            time: new Date(),
-            buyer_number: phoneNumber,
-            buyer_location: meetingLocation,
-            payment_status: 'unpaid'
-        }
-        fetch(`https://car-swap-server.vercel.app/orderItems`, {
-            method: "POST",
+    const handleUpdate = (event) => {
+        event.preventDefault();
+        fetch(`http://localhost:5000/products/${_id}`, {
+            method: 'PATCH',
             headers: {
-                "content-type": "application/json",
+                'content-type': 'application/json'
             },
-            body: JSON.stringify(UpdateItems),
+            body: JSON.stringify(nameUpdate,stockUpdate,saleUpdate)
         })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.acknowledged) {
-                    toast("Successfully ordered this item");
-                    setShow(false);
-                }
-                else {
-                    toast("Something Went Wrong!Try again");
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success("Updated Successfully");
+                    
                 }
             })
-            .catch(err => console.error(err));
     }
+    const handleOnchange = (event) => {
+        const field = event.target.name;
+        const value = event.target.value;
+        const name = { ...nameUpdate };
+        const stockQuantity={ ...stockUpdate};
+        const saleAmount={...saleUpdate};
+        name[field] = value;
+        setNameUpdate(name);
+        console.log(nameUpdate);
+        stockQuantity[field] = value;
+        setStockUpdate(stockQuantity);
+        saleAmount[field]=value;
+        setSaleUpdate(saleAmount);
+    }
+    // console.log(nameUpdate,stockUpdate);
+    
     return (
         <Container>
-            <span className='  fw-bold fs-3' style={{ cursor: 'pointer' }} ><img onClick={handleShow} className='' src={edit} style={{ height: '33px', width: '33px' }} alt="" /></span>
-
-
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Update Product</Modal.Title>
+            <span className='  fw-bold ' style={{ cursor: 'pointer' }} ><img onClick={handleShow} className='' src={edit} style={{ height: '20px', width: '20px' }} alt="" /></span>
+            <Modal show={show} onHide={handleClose} className='d-flex' style={{position:'fixed',top:'0px',}}>
+                <Modal.Header closeButton style={{backgroundColor:'#6B43FB'}} closeVariant='white'>
+                    <Modal.Title style={{color:'white'}}>Update Product</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    <Form onSubmit={handleAddOrder}>
+                <Modal.Body style={{maxHeight:'75vh',overflowY:'scroll'}}  >
+                    <Form onSubmit={handleUpdate}>
                         <small className='fw-bold'>Product Name:</small>
                         <Form.Group
-                            className="mb-3"
+                            className="mb-3 w-100"
                             controlId="exampleForm.ControlInput1"
                         >
                             <Form.Control
                                 type="text"
                                 placeholder="Name"
                                 defaultValue={name}
+                                onChange={handleOnchange}
+                                name='name'
 
                             />
                         </Form.Group>
-                        <Form.Group
+                        {/* <Form.Group
                             className="mb-3"
                             controlId="exampleForm.ControlInput1"
                         >
+                        
+                        </Form.Group> */}
+                        <small className='fw-bold'>Item Code:</small>
+                        <Form.Group
+                            className="mb-3 w-100"
+                            controlId="exampleForm.ControlInput1"
+                        >
+                            <Form.Control
+                                type="text"
+                                placeholder="Item Code"
+                                defaultValue={item_code }
+                                onChange={handleOnchange}
+                                name='original_price'
+                                disabled
+                                style={{cursor:'not-allowed'}}
 
+                            />
                         </Form.Group>
                         <small className='fw-bold'>Original Price:</small>
                         <Form.Group
-                            className="mb-3"
+                            className="mb-3 w-100"
                             controlId="exampleForm.ControlInput1"
                         >
                             <Form.Control
                                 type="text"
                                 placeholder="original price"
                                 defaultValue={original_price}
+                                onChange={handleOnchange}
+                                name='original_price'
+                                disabled
+                                style={{cursor:'not-allowed'}}
 
                             />
                         </Form.Group>
-                        <small className='fw-bold'>Resale Price:</small>
+                        <small className='fw-bold '>Resale Price:</small>
                         <Form.Group
-                            className="mb-3"
+                            className="mb-3 w-100"
                             controlId="exampleForm.ControlInput1"
                         >
                             <Form.Control
                                 type="text"
                                 placeholder="selling price"
                                 defaultValue={resale_price}
+                                onChange={handleOnchange}
+                                name='resale_price'
 
                             />
                         </Form.Group>
                         <small className='fw-bold'>Stock Quantity:</small>
                         <Form.Group
-                            className="mb-3 w-25"
+                            className="mb-3 w-50"
                             controlId="exampleForm.ControlInput1"
                         >
                             <Form.Control
                                 type="number"
                                 placeholder="stock quantity"
                                 defaultValue={stockQuantity}
-
+                                onChange={handleOnchange}
+                                name='stockQuantity'
                             />
                         </Form.Group>
-
-
-
                         <Button
                             className="text-center book_btn pe-5 ps-5"
                             type='submit'
+                            style={{backgroundColor:'#6b43fb'}}
 
                         >
                             Update
@@ -137,7 +159,7 @@ const EditProduct = ({ data }) => {
                     </p>
                 </Modal.Footer>
             </Modal>
-            <ToastContainer />
+            
         </Container>
     );
 };

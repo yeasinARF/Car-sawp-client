@@ -68,10 +68,10 @@ const SignIn = () => {
         <div>
             <Container >
                 <Row>
-                    <Col className='mx-auto' lg={6} md={6} sm={11} xs={11} >
-                        <img className='img-fluid rounded' src={log} alt="" />
+                    <Col className='mx-auto' lg={7} md={8} sm={11} xs={11} >
+                        <img className='img-fluid rounded d-lg-block d-none' style={{marginTop:'-30px'}} src={log} alt="" />
                     </Col>
-                    <Col className='mx-auto' lg={6} md={6} sm={11} xs={11} >
+                    <Col className='mx-auto' lg={5} md={8} sm={11} xs={11} >
                         <Form onSubmit={handleLogIn} className='container rounded formContainer mx-auto text-black my-3 pt-2'>
                             <h1 className='py-3 text-center'>User Login</h1>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -85,6 +85,8 @@ const SignIn = () => {
                             <Button style={{ backgroundColor: '#6B43FB', width: '110px', height: '40px', fontSize: '1rem', border: 'none' }} type="submit">
                                 Login
                             </Button>
+
+
                             <p className='text-center'>Or</p>
                             <div className='text-center mb-2'>
                                 <Button onClick={handleLogInWithGoogle} style={{ backgroundColor: '#6B43FB', width: '180px', height: '40px', fontSize: '1rem', border: 'none' }} >Login With <FaGoogle></FaGoogle> </Button>
@@ -92,6 +94,7 @@ const SignIn = () => {
                             <div className='text-center mb-3'>
                                 <Button onClick={handleLogInWithGitHub} style={{ backgroundColor: '#6B43FB', width: '180px', height: '40px', fontSize: '1rem', border: 'none' }}>Login With <FaGithub></FaGithub> </Button>
                             </div>
+                            
                             <p className='py-2 text-danger'>{error}</p>
                             <p className='text-center pb-2 '>Create New Account?<Link className="text-primary ps-2" to='/register'>Register Now</Link></p>
                         </Form>

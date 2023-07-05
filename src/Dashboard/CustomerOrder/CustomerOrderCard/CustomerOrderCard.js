@@ -1,28 +1,50 @@
 import React from 'react';
-import { Button, Card, Col } from 'react-bootstrap';
 import PaymentStatus from '../PaymentStatus/PaymentStatus';
+import 'react-photo-view/dist/react-photo-view.css';
+import { FaTrashAlt } from 'react-icons/fa';
+import view from '../../../Images/view.png'
+import ViewData from './ViewData/ViewData';
+import { ToastContainer } from 'react-bootstrap';
 
-const CustomerOrderCard = ({ data }) => {
-    const { name, img, resale_price, original_price, buyer_name, email, buyer_number, buyer_location, payment_status } = data;
+const CustomerOrderCard = ({ data, i, handleDelete }) => {
+    const { orderId, orderQuantity, _id, resale_price, original_price, buyer_name, email, price, buyer_number, buyer_location, payment_status, time, delivery_status } = data;
+    const subTotal = price?.toLocaleString('en-IN');
     return (
-        <Col md={6} lg={6} >
-            <Card className='p-2 card mb-3 cardProduct' style={{ boxShadow: "2px 2px 10px 4px rgb(211, 211, 211)", backgroundColor: "rgb(227, 227, 227)", border: 'none' }} >
-                <Card.Img variant="top" className='w-100 rounded img-fluid' style={{ height: '200px' }} src={img} />
-                <Card.Body>
-                    <Card.Title className='fw-bold'>{name}</Card.Title>
-                    <p className=''>Price: $ {resale_price}</p>
+        <>
+            <tbody style={{ fontSize: '0.8rem' }}>
+                {/* row 1 */}
+                <tr style={{ borderBottom: '1px solid #CECECE' }}>
+                    <td>{i + 1}</td>
+                    {/* <th>
+                        <label>
+                            <input type="checkbox" checked={check} className="checkbox" />
+                        </label>
+                    </th> */}
+                    <td>
+                        SALE-{orderId}
+                    </td>
+                    <td >
+                        {time}
+                        <br />
+                    </td>
+                    <td>
+                        {buyer_name}
+                    </td>
+                    <td >$ {subTotal}</td>
+                    <td style={payment_status === 'Unpaid' ? { color: 'red' } : payment_status === 'Partial Paid' ? { color: '#F86F03' } : { color: '#54B435' }}>{payment_status}</td>
+                    <td style={delivery_status === 'Pending' ? { color: 'red' } : delivery_status === 'Processing' ? { color: '#F86F03' } : { color: '#54B435' }}>{delivery_status}</td>
+                    <td >
+                        <div className='d-flex' style={{ justifyContent: 'space-between' }}>
+                            <ViewData data={data}></ViewData>
+                            <PaymentStatus data={data}></PaymentStatus>
+                            {delivery_status === 'Processing' || delivery_status === 'Delivered' || payment_status==='Paid' ? <span className='fw-bold'><FaTrashAlt disabled style={{ color: 'gray', cursor: 'not-allowed' }}></FaTrashAlt></span> : <span onClick={() => handleDelete(_id)} className='  fw-bold ' ><FaTrashAlt style={{ color: 'rgb(107, 67, 251)', cursor: 'pointer' }}></FaTrashAlt></span>}
+                        </div>
+                    </td>
 
-                    <p className=''>Customer Name: {buyer_name} </p>
-                    <p className=''>Customer Email: {email}</p>
-                    <p className=''>Customer Phone: {buyer_number} </p>
-                    <p className=''>Customer Location: {buyer_location}</p>
-                    <p className=''>Status: {payment_status} </p>
-                    <PaymentStatus data={data}></PaymentStatus>
-
-
-                </Card.Body>
-            </Card>
-        </Col>
+                </tr>
+            </tbody>
+            
+        </>
     );
 };
 

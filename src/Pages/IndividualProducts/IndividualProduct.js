@@ -11,7 +11,7 @@ const IndividualProduct = () => {
     console.log(data);
     return (
         <Container>
-
+            
             {
                 data.map(data => <IndividualProductCard data={data} key={data._id}></IndividualProductCard>)
             }

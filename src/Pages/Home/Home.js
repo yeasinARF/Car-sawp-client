@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Button, Card, Carousel, CarouselItem, Col, Container, Row } from 'react-bootstrap';
+import { Button, Card, Carousel, CarouselItem, Col, Container, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import bannerOne from '../../Images/car-1.png';
 import bannerTwo from '../../Images/car-seller.png'
@@ -15,6 +15,9 @@ import AllCars from '../AllCars/AllCars';
 import AllSellersCard from '../../Dashboard/AllSellers/AllSellersCard/AllSellersCard';
 import useRole from '../../useRole';
 import { AuthContext } from '../../Utilities/Context/UserContext';
+import contactImage from '../../Images/contact.png';
+import Contact from '../../Contact/Contact';
+
 
 const Home = () => {
     const [categorie, setCategorie] = useState([]);
@@ -37,14 +40,15 @@ const Home = () => {
                         <Row className='my-3'>
                             <Col md={6} lg={5}>
                                 <div className='description'>
-                                    <h1 className=' headingTitle pt-4 pb-2 mt-4 mb-2' style={{ color: 'black' }}>Just few steps to sell used car</h1>
+                                    <h1 className=' pt-4 pb-2 mt-4 mb-2' style={{ color: 'black', fontWeight: 'bold' }}>Just few steps to sell used car</h1>
                                     <p className='text-gray fs-5 py-4'><small>Top used car selling platform. We will help you to sell used car through our platform.</small></p>
-                                    <Link className='ExploreButtonLink text-white text-decoration-none' to='dashboard' ><Button className='px-4 py-2 my-4 fw-bold' style={{ backgroundColor: '#6B43FB', width: '150px', height: '50px', fontSize: '1.2rem', border: 'none' }}>Sell Now</Button></Link>
+                                    <Link className='ExploreButtonLink text-white text-decoration-none' to='dashboard' ><Button className='px-4 py-2 my-4 fw-bold' style={{ backgroundColor: '#E3E3E3', color: '#6B43FB', width: '130px', height: '50px', fontSize: '1rem', border: '2px solid #6B43FB ' }}>Sell Now</Button></Link>
+
                                 </div>
                             </Col>
                             <Col md={6} lg={7}>
-                                <div className='text-center' style={{ marginTop: '-30px' }}>
-                                    <img className='img-fluid rounded' src={bannerTwo} alt="" />
+                                <div className='text-center sellLeftSide ' >
+                                    <img className='img-fluid rounded bannerImg d-md-block d-none' src={bannerTwo} alt="" />
                                 </div>
                             </Col>
                         </Row>
@@ -78,6 +82,7 @@ const Home = () => {
                                             <div className='description'>
                                                 <h1 className='  pt-4 pb-2 mt-4 mb-2' style={{ color: 'black' }}>Our Sellers Feedback</h1>
                                                 <p className='text-gray fs-5'>"One of the most trusted platform."</p>
+
                                                 <p className='mt-5' style={{ fontWeight: '700' }}>Alex Jhon</p>
                                                 <small>CEO of Pen Co. Ltd.</small>
                                             </div>
@@ -114,14 +119,17 @@ const Home = () => {
                                 <Row>
                                     <Col md={6} lg={5}>
                                         <div className='description'>
-                                            <h1 className=' headingTitle pt-4 pb-2 mt-4 mb-2' style={{ color: 'black' }}>Easy way & Fast way to buy & sell used car</h1>
+                                            <h1 className='  pt-4 pb-2 mt-4 mb-2' style={{ color: 'black', fontWeight: 'bold' }}>Easy way & Fast way to buy & sell used car</h1>
                                             <p className='text-gray fs-5 py-4'><small>We will help you sell or buy your dream car through our platform.</small></p>
-                                            <Link className='ExploreButtonLink text-white text-decoration-none' to='/allcars' ><Button className='px-4 py-2 my-4 fw-bold' style={{ backgroundColor: '#6B43FB', width: '150px', height: '50px', fontSize: '1.2rem', border: 'none' }}>Book Now</Button></Link>
+                                            <div className='d-flex me-5' style={{ justifyContent: 'space-between' }}>
+                                                <Link className='ExploreButtonLink text-white text-decoration-none' to='/allcars' ><Button className='px-4 py-2 my-4 fw-bold' style={{ backgroundColor: '#E3E3E3', color: '#6B43FB', width: '150px', height: '50px', fontSize: '1rem', border: '2px solid #6B43FB ' }}>Book Now</Button></Link>
+                                                <Link className='ExploreButtonLink text-white text-decoration-none ms-2' to='/register' ><Button className='px-4 py-2 my-4 fw-bold' style={{ backgroundColor: '#6B43FB', width: '150px', height: '50px', fontSize: '1rem', border: 'none' }}>Sell Now</Button></Link>
+                                            </div>
                                         </div>
                                     </Col>
                                     <Col md={6} lg={7}>
-                                        <div className='text-center ' style={{ marginTop: '-80px' }}>
-                                            <img className='img-fluid rounded' src={bannerOne} alt="" />
+                                        <div className='text-center leftSide '>
+                                            <img className='img-fluid rounded bannerImg d-md-block d-none' src={bannerOne} alt="" />
                                         </div>
                                     </Col>
                                 </Row>
@@ -155,17 +163,24 @@ const Home = () => {
                                 <AdItem></AdItem>
                             </Container>
 
+                            {/* hot deal  section
+                            <Container className='hotDeal-section'>
+                                    <Card>
+                                        
+                                    </Card>
+
+                            </Container> */}
 
                             <Container className='mb-4'>
                                 <Carousel>
                                     <CarouselItem>
                                         <Row>
-                                            <Col md={6} lg={6}>
+                                            <Col md={10} lg={6} className='mx-auto'>
                                                 <div className='text-center mt-4 pt-3'>
                                                     <img className=' rounded' style={{ width: '380px', height: '350px', boxShadow: '2px 2px 10px 4px rgb(211, 211, 211)' }} src={man2} alt="" />
                                                 </div>
                                             </Col>
-                                            <Col md={6} lg={6}>
+                                            <Col md={10} lg={6} className='mx-auto'>
                                                 <div className='description'>
                                                     <h1 className='  pt-4 pb-2 mt-4 mb-2' style={{ color: 'black' }}>Our Clients Feedback</h1>
                                                     <p className='text-gray fs-5'>"Few days ago, I bought a car from this platform. At first, I was so confused because there were a lot of online platforms for buying second-hand cars, but I found them as a trusted platform." </p>
@@ -178,12 +193,12 @@ const Home = () => {
                                     </CarouselItem>
                                     <CarouselItem>
                                         <Row>
-                                            <Col md={6} lg={6}>
+                                            <Col md={10} lg={6} className='mx-auto'>
                                                 <div className='text-center mt-4 pt-3'>
                                                     <img className=' rounded' style={{ width: '380px', height: '350px', boxShadow: '2px 2px 10px 4px rgb(211, 211, 211)' }} src={man3} alt="" />
                                                 </div>
                                             </Col>
-                                            <Col md={6} lg={6}>
+                                            <Col md={10} lg={6} className='mx-auto'>
                                                 <div className='description'>
                                                     <h1 className='  pt-4 pb-2 mt-4 mb-2' style={{ color: 'black' }}>Our Clients Feedback</h1>
                                                     <p className='text-gray fs-5'>"One of the most trusted platform."</p>
@@ -196,12 +211,12 @@ const Home = () => {
                                     </CarouselItem>
                                     <CarouselItem>
                                         <Row>
-                                            <Col md={6} lg={6}>
+                                            <Col md={10} lg={6} className='mx-auto'>
                                                 <div className='text-center mt-4 pt-3'>
                                                     <img className=' rounded' style={{ width: '380px', height: '350px', boxShadow: '2px 2px 10px 4px rgb(211, 211, 211)' }} src={man4} alt="" />
                                                 </div>
                                             </Col>
-                                            <Col md={6} lg={6}>
+                                            <Col md={10} lg={6} className='mx-auto'>
                                                 <div className='description'>
                                                     <h1 className='  pt-4 pb-2 mt-4 mb-2' style={{ color: 'black' }}>Our Clients Feedback</h1>
                                                     <p className='text-gray fs-5'>"This the best used car platform. I love their service. In addition, they are so cooperative."</p>
@@ -215,17 +230,17 @@ const Home = () => {
                                 </Carousel>
                             </Container>
                             <Container className='regBuyer'>
-                                <Row style={{flexDirection:'row-reverse'}}>
-                                    <Col md={6} lg={7}>
+                                <Row style={{ flexDirection: 'row-reverse' }}>
+                                    <Col md={10} lg={7} className='mx-auto'>
                                         <div className='text-center '>
                                             <img className='img-fluid rounded' src={bannerThree} alt="" />
                                         </div>
                                     </Col>
-                                    <Col md={6} lg={5}>
+                                    <Col md={10} lg={5} className='mx-auto'>
                                         <div className='register'>
                                             <h1 className=' headingTitle ' style={{ color: 'black' }}>Want to buy car?</h1>
                                             <p className='text-gray fs-5 py-4'><small>Buy high quality car at cheap price.</small></p>
-                                            <Link className='ExploreButtonLink text-white text-decoration-none' to='/register' ><Button className='px-4 py-2 my-4 fw-bold' style={{ backgroundColor: '#6B43FB', width: '180px', height: '50px', fontSize: '1.2rem', border: 'none' }}>Register Now</Button></Link>
+                                            <Link className='ExploreButtonLink text-white text-decoration-none' to='/register' ><Button className='px-4 py-2 my-4 fw-bold' style={{ backgroundColor: '#E3E3E3', color: '#6B43FB', width: '180px', height: '50px', fontSize: '1.1rem', border: '2px solid #6B43FB ' }}>Register Now</Button></Link>
                                         </div>
                                     </Col>
 
@@ -243,6 +258,8 @@ const Home = () => {
 
 
                         </Container>
+                        {/* contact section  */}
+                        <Contact></Contact>
                     </>
             }
         </Container>
