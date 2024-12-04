@@ -4,30 +4,28 @@ import { useLoaderData } from 'react-router-dom';
 import MyOrdersCard from './MyOrdersCard/MyOrdersCard';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaTrashAlt } from 'react-icons/fa';
+
 
 const MyOrders = () => {
     const data = useLoaderData();
     const [currentOrder, setCurrentOrder] = useState(data);
+    const [currentPage,setCurrentPage]=useState(1);
+    const [postPerPage,setPostPerPage]=useState(8);
     const [check, setCheck] = useState(false)
-    const [view, setView] = useState('none')
+    // const [view, setView] = useState('none')
 
+    // const handleClick = () => {
+    //     if (check) {
+    //         setCheck(false)
+    //         setView('none')
 
-    const handleClick = () => {
-        if (check) {
-            setCheck(false)
-            setView('none')
+    //     }
+    //     else {
+    //         setCheck(true)
+    //         setView('block')
 
-        }
-        else {
-            setCheck(true)
-            setView('block')
-
-        }
-
-
-
-    }
+    //     }
+    // }
     // single delete
     const handleDelete = (_id) => {
         const proceed = window.confirm('Are you sure to delete this Items ?');

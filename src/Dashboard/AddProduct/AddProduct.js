@@ -202,7 +202,7 @@ const AddProduct = () => {
 
                                 <label><span className='pe-2' style={{ color: 'red', fontSize: '1.2rem' }}>*</span>Choose Brand: </label><br></br>
                                 <select onChange={handleChange} style={{ border: 'none', outline: 'none', height: '40px', borderRadius: '6px' }} required >
-                                    <option value="Select an Option" selected disabled hidden  >Select an Option</option>
+                                    <option value="Select an Option" selected disabled hidden  >Select an Unit</option>
                                     {
                                         data.map(d => <option key={d._id} value={d._id}>{d.name}</option>)
                                     }

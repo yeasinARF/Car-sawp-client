@@ -14,7 +14,7 @@ import ad from '../../../Images/megaphone.png'
 import stockOt from '../../../Images/not-available.png'
 
 const MyProductsCard = ({ data,i,handleDelete }) => {
-    const { name, img, _id, resale_price, original_price, status, years_of_use, purchase_year, seller_name, seller_image, stockQuantity, condition, seller_email,item_code } = data;
+    const { name, img, _id, resale_price, original_price, location,status, years_of_use, purchase_year, seller_name, seller_image, stockQuantity, condition, seller_email,item_code } = data;
     const { user, loader } = useContext(AuthContext);
     const stock=parseInt(stockQuantity)
     if (loader) {
@@ -40,6 +40,7 @@ const MyProductsCard = ({ data,i,handleDelete }) => {
             status,
             stockQuantity,
             condition,
+            location,
             item_code
         }
         fetch('https://car-swap-server.vercel.app/advertise', {

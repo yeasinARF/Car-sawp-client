@@ -32,7 +32,7 @@ const AllBuyers = () => {
                 <thead>
                     <tr style={{ boxShadow: "2px 2px 10px 4px rgb(211, 211, 211)", backgroundColor: "rgb(227, 227, 227)", border: 'none' }}>
 
-                        <th style={{ fontSize: '0.9rem' }}>#</th>
+                        <th style={{ fontSize: '0.9rem',}}>#</th>
                         {/* <th>
                             <label>
                                 <input type="checkbox" onClick={handleClick} checked={check} className="checkbox" />
